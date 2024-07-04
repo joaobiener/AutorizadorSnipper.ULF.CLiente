@@ -1,12 +1,11 @@
 ﻿@inherits LayoutComponentBase
 
 <MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
-<MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar Elevation="0" Style="@($"color:{_theme.PaletteDark.White}; background:{Colors.Teal.Darken4};")">
+    <MudAppBar Elevation="0" Style="@($"color:{_theme.Palette.White}; background:{Colors.Teal.Darken4};")">
         <MudLink Href="dashboard" ><MudImage Src="images/logo512.png" Height="60"></MudImage></MudLink>
 
         <MudIconButton Class="ms-2" Icon="@MenuIcon" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
