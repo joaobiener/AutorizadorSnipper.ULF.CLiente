@@ -1,0 +1,29 @@
+﻿@if (Aplicacoes.Any() && !Aguardando)
+{
+	@foreach (var app in Aplicacoes)
+	{
+		<AuthorizeView Roles="@ConvertListToString(app.Roles)">
+			<Authorized>
+				<MudNavLink Href="@app.HRef" Icon="@app.Icon" IconColor="@app.IconColor">@app.Title</MudNavLink>
+				</Authorized>
+			</AuthorizeView>
+	}
+}
+
+else
+{
+	if (Aguardando)
+	{
+	
+		<MudSkeleton Width="80%" />
+		<MudSkeleton Width="80%" />
+		<MudSkeleton Width="80%" />
+		<MudSkeleton Width="80%" />
+		<MudSkeleton Width="80%" />
+	
+	}
+	else //Não retornaram dados
+	{
+		<MudAlert Severity="Severity.Normal">Sem permissão atribuida</MudAlert>
+	}
+}

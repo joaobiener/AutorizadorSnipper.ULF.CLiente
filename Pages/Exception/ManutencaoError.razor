@@ -1,0 +1,25 @@
+﻿@page "/ManutError"
+
+
+<MudContainer Fixed="true" Class="d-flex justify-center">
+		<MudPaper Class="mt-6"  Square="false">
+			<MudCard>
+				<MudCardHeader>
+					<CardHeaderContent>
+						<MudText Typo="Typo.h4">Estamos em manutenção!</MudText>
+					</CardHeaderContent>
+					<CardHeaderActions>
+					<MudButton Variant="Variant.Text" StartIcon="@Icons.Material.Filled.Login" OnClick="NavigateToHome" Color="Color.Error">Voltar</MudButton>
+					</CardHeaderActions>
+				</MudCardHeader>
+				<MudCardMedia Image="assets/unimanut.jpg" Height="500" />
+				<MudCardContent>
+					<MudText Typo="Typo.body2">
+						Desculpe pelo transtorno, mas precisamos fazer uma manutenção de emergência em nosso site. 
+						Estamos trabalhando o mais rápido possível para colocá-lo de volta no ar. 
+						Agradecemos a compreensão e pedimos desculpas por qualquer inconveniente causado.</MudText>
+				</MudCardContent>
+
+			</MudCard>
+		</MudPaper>
+	</MudContainer>

@@ -1,0 +1,111 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="0" Style="@($"color:{_theme.PaletteDark.White}; background:{Colors.Teal.Darken4};")">
+        <MudLink Href="dashboard" ><MudImage Src="images/logo512.png" Height="60"></MudImage></MudLink>
+
+        <MudIconButton Class="ms-2" Icon="@MenuIcon" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudText Typo="Typo.h5">
+            <MudIcon Icon="@Icons.Material.Filled.Adjust" Size="Size.Large" />
+            Autorizador Snipper
+        </MudText>
+        <MudSpacer />
+       
+        <AuthorizeView>
+            <Authorized>
+              
+                <MudTooltip Text="Dashboard">
+                    <MudIconButton Color="Color.Inherit" Icon="@Icons.Material.Filled.Apps" Href="dashboard" />
+                </MudTooltip>
+               
+
+                <MudTooltip Text="Logout">
+                    <MudIconButton Color="Color.Inherit" Icon="@Icons.Material.Filled.Logout" Href="logout" />
+                </MudTooltip>
+            </Authorized>
+            <NotAuthorized>
+                <MudTooltip Text="Login">
+                    <MudIconButton Color="Color.Inherit" Icon="@Icons.Material.Filled.Login" Href="login" />
+                </MudTooltip>
+                
+            </NotAuthorized>
+        </AuthorizeView>
+         <MudTooltip Text="Dark/White Mode">
+            <MudIconButton Color="Color.Inherit" Icon="@DarkModeIcon" OnClick="ButtonDarkModeClick" />
+        </MudTooltip>
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="3">
+
+        <NavMenu />
+        <MudIconButton Color="Color.Inherit" Icon="@DarkModeIcon" OnClick="ButtonDarkModeClick" />
+
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    bool _drawerOpen = false;
+    bool _isDarkMode;
+    string DarkModeIcon = Icons.Material.Filled.WbSunny;
+    string MenuIcon = @Icons.Material.Filled.Menu;
+    private MudThemeProvider _mudThemeProvider;
+
+    private MudTheme _theme = new();
+    
+
+
+    void DrawerToggle()
+    {
+
+
+        _drawerOpen = !_drawerOpen;
+        MenuIcon = _drawerOpen ? @Icons.Material.Filled.MenuOpen : @Icons.Material.Filled.Menu;
+    }
+    void ButtonDarkModeClick()
+    {
+        _isDarkMode = !_isDarkMode;
+        if (_isDarkMode)
+        {
+            DarkModeIcon = Icons.Material.Filled.DarkMode;
+
+
+        }
+        else
+        {
+            DarkModeIcon = Icons.Material.Filled.WbSunny;
+
+        }
+    }
+
+
+
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _isDarkMode = await _mudThemeProvider.GetSystemPreference();
+            if (_isDarkMode)
+            {
+                DarkModeIcon = Icons.Material.Filled.DarkMode;
+            }
+            else
+            {
+                DarkModeIcon = Icons.Material.Filled.WbSunny;
+            }
+            StateHasChanged();
+        }
+    }
+
+
+}

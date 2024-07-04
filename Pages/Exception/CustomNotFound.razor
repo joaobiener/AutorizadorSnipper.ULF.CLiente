@@ -1,0 +1,28 @@
+﻿@page "/404"
+
+
+<MudContainer Fixed="true" Class="d-flex justify-center">
+	<MudPaper Class="mt-6" Square="false">
+		<MudCard>
+			<MudCardHeader>
+				<CardHeaderContent>
+					<MudText Typo="Typo.h4">Página não encontrada!</MudText>
+				</CardHeaderContent>
+				<CardHeaderActions>
+					<MudButton Variant="Variant.Text" StartIcon="@Icons.Material.Filled.Login" OnClick="NavigateToHome" Color="Color.Error">Voltar</MudButton>
+				</CardHeaderActions>
+			</MudCardHeader>
+			<MudCardMedia Image="assets/404.jpg" Height="500" />
+			<MudCardContent>
+				<MudText Typo="Typo.body2">
+					Desculpe pelo transtorno, esta página não está disponível em nosso Site!
+				</MudText>
+			</MudCardContent>
+
+		</MudCard>
+	</MudPaper>
+</MudContainer>
+
+
+
+

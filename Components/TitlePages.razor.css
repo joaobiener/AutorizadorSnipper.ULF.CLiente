@@ -1,0 +1,9 @@
+﻿div.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    margin-top: 40PX;
+    background-color: #666;
+    padding: 40px;
+    font-size: 25px;
+}

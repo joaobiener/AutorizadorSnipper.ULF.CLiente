@@ -1,0 +1,25 @@
+﻿@page "/unauthorized"
+
+<MudContainer Fixed="true" Class="d-flex justify-center">
+	<MudPaper Class="mt-6" Square="false">
+		<MudCard>
+			<MudCardHeader>
+				<CardHeaderContent>
+					<MudText Typo="Typo.h4">Acesso não authorizado!</MudText>
+				</CardHeaderContent>
+				<CardHeaderActions>
+					<MudButton Variant="Variant.Text" StartIcon="@Icons.Material.Filled.Login" Color="Color.Error">Voltar</MudButton>
+				</CardHeaderActions>
+			</MudCardHeader>
+			<MudCardMedia Image="assets/Unauthorized.jpg" Height="500" />
+			<MudCardContent>
+				<MudText Typo="Typo.body2">
+					Não possui autorização para navegar nesta página
+				</MudText>
+			</MudCardContent>
+
+		</MudCard>
+	</MudPaper>
+</MudContainer>
+
+

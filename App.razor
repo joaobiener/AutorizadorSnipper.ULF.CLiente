@@ -1,0 +1,25 @@
+﻿@using AutorizadorSnipper.ULF.Cliente.Pages.Exception
+@using Microsoft.AspNetCore.Components.Authorization
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+<link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
+<script src="_content/MudBlazor/MudBlazor.min.js"></script>
+
+<CascadingAuthenticationState>
+<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="@routeData"
+            DefaultLayout="@typeof(MainLayout)" >
+            <Authorizing>
+                <text>Aguarde, pf, estamos autorizando o usuário.</text>
+            </Authorizing>
+        </AuthorizeRouteView>
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <CustomNotFound />
+        </LayoutView>
+    </NotFound>
+</Router>
+</CascadingAuthenticationState>
