@@ -3,7 +3,7 @@ using Autorizador.ULF.Services.Shared.RequestFeatures;
 using AutorizadorSnipper.ULF.Cliente.Features;
 
 
-namespace Autorizador.ULF.Cliente.HttpRepository
+namespace AutorizadorSnipper.ULF.Cliente.HttpRepository
 {
     public interface IPrestadorHttpRepositoy
 	{

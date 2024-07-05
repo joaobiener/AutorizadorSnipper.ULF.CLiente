@@ -12,26 +12,77 @@
     <link href="AutorizadorSnipper.ULF.Cliente.styles.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
-  
-
 </head>
 
+<style>
+
+   
+    .loading-container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: url('images/ULFlayout_set_logo1000.png') no-repeat center center;
+        background-size: 800px 400px; /* Tamanho específico da imagem de fundo */
+        z-index: 1000;
+        text-align: center;
+    }
+
+    .loading-image {
+        width: 300px;
+        height: auto;
+        animation: pulse 1.5s infinite;
+    }
+
+    p {
+        color: white;
+        margin-top: 20px; /* Espaço entre a imagem e o texto */
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+</style>
+
 <body>
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
+
+        <div class="loading-container" id="loading">
+            <img src="images/vecteezy_shooting-illustration-design_35066404.png" alt="Loading" class="loading-image">
+            <p sytle=" font-size: 20px;font-weight:bold">AUTORIZADOR SNIPPER </p>
+        </div>
+
+
+    <div id="app" style="display:none;">
+        <!-- Todo o conteúdo da sua aplicação -->
     </div>
 
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
-    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+    <script>
+        // Função para adicionar um atraso mínimo
+        function showApp() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('app').style.display = 'block';
+        }
+
+        // Espera que a página esteja completamente carregada e aplica um atraso mínimo de 2 segundos
+        window.addEventListener('load', function () {
+            setTimeout(showApp, 2000); // Ajuste o valor em milissegundos conforme necessário
+        });
+    </script>
     <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
 </body>
 
 </html>

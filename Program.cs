@@ -25,7 +25,6 @@ builder.Services.AddHttpClient("SNIPPERAPI", (sp, cl) =>
 {
     var apiConfiguration = sp.GetRequiredService<IOptions<ApiConfiguration>>();
     cl.BaseAddress = new Uri(apiConfiguration.Value.BaseAddress);
-    // cl.Timeout =  new TimeSpan(0, 0, 10);
     cl.Timeout = new TimeSpan(0, apiConfiguration.Value.Timeout, 0);
     cl.EnableIntercept(sp);
 });
@@ -38,8 +37,6 @@ builder.Services.AddHttpClient<AuthAPIClient>("AUTHAPI", (sp, cl) =>
     cl.EnableIntercept(sp);
 });
 
-
-//builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddMudServices(config => {
     config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomLeft;
@@ -59,9 +56,9 @@ builder.Services.AddScoped(sp =>
 {
     var httpClientFactory = sp.GetRequiredService<IHttpClientFactory>();
 
-    // Register interceptor for PRESTAPI
-    var prestapiClient = httpClientFactory.CreateClient("SNIPPERAPI");
-    prestapiClient.EnableIntercept(sp);
+    // Register interceptor for Snipper
+    var snipperapiClient = httpClientFactory.CreateClient("SNIPPERAPI");
+    snipperapiClient.EnableIntercept(sp);
 
     // Register interceptor for AUTHAPI
     //var authapiClient = httpClientFactory.CreateClient("AUTHAPI");
@@ -69,10 +66,8 @@ builder.Services.AddScoped(sp =>
 
     // You can customize the interception logic based on your requirements
 
-    return prestapiClient; // Return one of the clients if needed
+    return snipperapiClient; // Return one of the clients if needed
 });
-
-
 
 
 builder.Services.AddScoped<IUtil, Util>();

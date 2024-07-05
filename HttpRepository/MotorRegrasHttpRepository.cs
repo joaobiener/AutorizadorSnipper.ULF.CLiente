@@ -1,17 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
-using System.Net.Http.Json;
 using System.Text.Json;
 using AutorizadorSnipper.ULF.Cliente.Features;
 using Autorizador.ULF.Services.Shared.DataTransferObjects;
 using Autorizador.ULF.Services.Shared.RequestFeatures;
-using Shared.DataTransferObjects;
-using AutorizadorSnipper.ULF.Cliente.Helper;
-using Microsoft.AspNetCore.JsonPatch;
-using Newtonsoft.Json;
-using System.Text;
-using Entities.Models.Autorizador;
-using Autorizador.ULF.Cliente.HttpRepository;
+using System.Net.Http.Json;
 
 namespace AutorizadorSnipper.ULF.Cliente.HttpRepository;
 
@@ -26,7 +19,6 @@ public class MotorRegrasHttpRepository : IMotorRegrasHttpRepository
 	{
 		_client = client;
 		_navManager = navManager;
-
 	}
 
 	//public async Task<PagingResponse<AutorizacaoPreAprovadaDto>> GetAllAutorizacaosync(AutorizacaoParameters parameters)
@@ -156,9 +148,13 @@ public class MotorRegrasHttpRepository : IMotorRegrasHttpRepository
         return pagingResponse;
     }
 
-    public Task<MotorRegrasAutorizadorDto> CreateRegra(MotorRegrasAutorizadorForCreationDto regra)
+    public async Task<MotorRegrasAutorizadorDto> CreateRegra(MotorRegrasAutorizadorForCreationDto regra)
     {
-        throw new NotImplementedException();
+        var responseRegra = await _client.PostAsJsonAsync("MotorRegras/CreateRegra", regra);
+
+        var createdAutorizacao = responseRegra.Content.ReadFromJsonAsync<MotorRegrasAutorizadorDto>().Result;
+
+        return createdAutorizacao;
     }
 
     public Task UpdateRegra(int id, MotorRegrasAutorizadorForManipulationDto autorizacaoDtoEntity)

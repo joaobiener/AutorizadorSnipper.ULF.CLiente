@@ -1,7 +1,23 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+     
+<MudGrid Class="d-flex justify-center align-center" >
 
-<h1>Hello, world!</h1>
+       <MudItem xs="12" sm="8" md="6" lg="4">
+        <MudPaper Class="pa-16 ma-2">
 
-Welcome to your new app.
+            <MudCard>
+                <MudLink Href="counter">
+                    <MudCardMedia Image="images/SnipperAjustadov2.png" Height="200" />
+                </MudLink>
+                <MudCardContent>
+                    <MudText Typo="Typo.h5">Autorizador Snipper</MudText>
+                    <MudText Typo="Typo.body2">Sistema de motor de regras para autorização de Guias.</MudText>
+                    
+                </MudCardContent>
+                <MudCardActions>
+                </MudCardActions>
+            </MudCard>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
