@@ -87,7 +87,8 @@ builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 builder.Services.AddScoped<RefreshTokenService, RefreshTokenService>();
-
-
+builder.Services.AddScoped<IMotorRegrasHttpRepository, MotorRegrasHttpRepository>();
+builder.Services.AddScoped<IPrestadorHttpRepositoy, PrestadorHttpRepositoy>();
+builder.Services.AddScoped<IProcedimentoHttpRepository, ProcedimentoHttpRepository>();
 
 await builder.Build().RunAsync();

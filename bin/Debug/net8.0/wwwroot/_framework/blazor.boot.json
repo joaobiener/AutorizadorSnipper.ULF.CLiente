@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "AutorizadorSnipper.ULF.Cliente",
   "resources": {
-    "hash": "sha256-rVv82waUKU5HR/izCaotu1J1ReoemTiktDAHcxwb/Uc=",
+    "hash": "sha256-cZLHmgAHJTrySVUvvG0kZvWjk/z+XGIGGvSiG/OsLxA=",
     "jsModuleNative": {
       "dotnet.native.8.0.6.82suddq1wh.js": "sha256-YU6M9+jtDVnB8/wtrgIndOstzNh778Ls8g9XnbjorSk="
     },
@@ -234,14 +234,14 @@
       "mscorlib.wasm": "sha256-masKveCdoRSahF99doEQk7H3YN2wHLVIE4M/Zu8OoD8=",
       "netstandard.wasm": "sha256-z1EJOmgVhSpTopn7Tek/0P//MKGF1I3NUD/sh4oLnwY=",
       "System.Private.CoreLib.wasm": "sha256-tuIWpR30u0OoEVtv4pXZ47mEpI2AmFBIyYFPnqDZZfw=",
-      "Autorizador.ULF.Services.Shared.wasm": "sha256-y0X3A0a0pyt6SXNz6pudbAQqjdCKTL600HvA9FBwaJs=",
-      "Entities.wasm": "sha256-L4ikp8yqsDhhVniE6zIlHXWZRqjriWUuctvZFPVgGJ4=",
-      "AutorizadorSnipper.ULF.Cliente.wasm": "sha256-CENT06kLizCrUxtgNWpMIs7t7kNR6c830KLQvwyY7+A="
+      "Autorizador.ULF.Services.Shared.wasm": "sha256-shTEbVKCjRXMxVlCWmPNdCgddS92WA0detuqaQdjg2A=",
+      "Entities.wasm": "sha256-Oar2klZ0ZIyzM55E6Opc9A+++FpEpRGU0cM+Qbm/u98=",
+      "AutorizadorSnipper.ULF.Cliente.wasm": "sha256-pVGCLSqoitNrf99uESYhxHWUdncqLqttFMD/nDWOZEA="
     },
     "pdb": {
-      "Autorizador.ULF.Services.Shared.pdb": "sha256-42Hp/1KJ4tyzwZe2m2P1jdtxMkN271lAUhdfcjP17xA=",
-      "Entities.pdb": "sha256-B8tjjguh6lUDO9YwmnohOTLRjiD1T+jpRs5A4sAaV+s=",
-      "AutorizadorSnipper.ULF.Cliente.pdb": "sha256-pNQR3j2bmrqZKP3KPF7tNLRHLjmujpTt92vuR7Vz1Ic="
+      "Autorizador.ULF.Services.Shared.pdb": "sha256-tIocZ85yXsiPDk3fvM7fOu1Jk7HzK0p/zkAvYLd6BPo=",
+      "Entities.pdb": "sha256-rox5tIdRDpPXW8KMg3E+cPoewRP9AlEFl04gfL0YBuI=",
+      "AutorizadorSnipper.ULF.Cliente.pdb": "sha256-eAbSdtjV3y6Wvu2d0XCwAGuId85sNHiiMCGMEjK2p9o="
     }
   },
   "cacheBootResources": true,

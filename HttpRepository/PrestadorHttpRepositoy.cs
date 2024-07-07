@@ -31,6 +31,7 @@ namespace AutorizadorSnipper.ULF.Cliente.HttpRepository
                 ["pageNumber"] = parameters.PageNumber.ToString(),
                 ["pageSize"] = parameters.PageSize.ToString(),
                 ["takeSize"] = parameters.TakeSize.ToString(),
+                ["Search"] = parameters.Search == null ? "" : parameters.Search,
                 ["codigocontrato"] = parameters.CodigoContrato == null ? string.Empty : parameters.CodigoContrato,
                 ["nomeprestador"] = parameters.NomePrestador == null ? string.Empty : parameters.NomePrestador,
                 ["especialidade"] = parameters.Especialidade == null ? string.Empty : parameters.Especialidade,
@@ -54,6 +55,31 @@ namespace AutorizadorSnipper.ULF.Cliente.HttpRepository
             return pagingResponse;
         }
 
+        public async Task<PagingResponse<MotorRegrasTipoPrestadorDto>> GetTiposPrestadores(SearchParameters parameters)
+        {
+            var queryStringParam = new Dictionary<string, string>
+            {
+                ["pageNumber"] = parameters.PageNumber.ToString(),
+                ["pageSize"] = parameters.PageSize.ToString(),
+                ["takeSize"] = parameters.TakeSize.ToString(),
+                ["Search"] = parameters.Search == null ? "" : parameters.Search,
+                ["orderBy"] = parameters.OrderBy == null ? "" : parameters.OrderBy
+            };
 
+
+            var response =
+                    await _client.GetAsync(QueryHelpers.AddQueryString("TipoPrestador", queryStringParam));
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            var pagingResponse = new PagingResponse<MotorRegrasTipoPrestadorDto>
+            {
+                Items = JsonSerializer.Deserialize<List<MotorRegrasTipoPrestadorDto>>(content, _options),
+                MetaData = JsonSerializer.Deserialize<MetaData>(
+                    response.Headers.GetValues("X-Pagination").First(), _options)
+            };
+
+            return pagingResponse;
+        }
     }
 }

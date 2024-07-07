@@ -1,0 +1,79 @@
+﻿@page "/login"
+
+@using AutorizadorSnipper.ULF.Cliente.Components
+@using Microsoft.AspNetCore.Authorization;
+
+@if (ShowAuthError)
+{
+	<div class="alert alert-danger" role="alert">
+		<p>@Error</p>
+	</div>
+}
+
+        <MudGrid>
+            <MudItem Class="mt-6" xs="12">
+                    <EditForm Model="_userForAuthentication" OnValidSubmit="ExecuteLogin" Context="editFormContext">
+			        <DataAnnotationsValidator />
+                    <MudCard>
+                            <MudCardHeader>
+                            <CardHeaderAvatar>
+                                <MudAvatar Color="Color.Success">L</MudAvatar>
+                            </CardHeaderAvatar>
+                            <CardHeaderContent>
+                                <MudText Typo="Typo.body1">Prestador Eventual</MudText>
+                                <MudText Typo="Typo.body2">Sistemas Unimed Leste Fluminense</MudText>
+                            </CardHeaderContent>
+                               
+                            </MudCardHeader>
+                        <MudCardContent>
+                            <MudTextField @bind-Value="_userForAuthentication.UserName"
+                                                For="@(() =>_userForAuthentication.UserName)"
+                                                AutoFocus="true"
+							                    Label="Usuário"
+                                                Variant="Variant.Outlined"
+							                    RequiredError="Usuário é obrigatória!"
+                                                id="username"/>
+
+
+                            <MudTextField @bind-Value="_userForAuthentication.Password"
+                                                For="@(() =>_userForAuthentication.Password)"
+                                                Label="Senha" 
+                                                Variant="Variant.Outlined"
+                                                InputType="@PasswordInput" 
+                                                Adornment="Adornment.End" 
+                                                AdornmentIcon="@PasswordInputIcon" 
+                                                OnAdornmentClick="ButtonTestclick" 
+                                                AdornmentAriaLabel="Mostrar a Senha"
+                                                AdornmentColor="Color.Success"
+                                                RequiredError="Senha é obrigatória!"
+                                                id="password" />
+
+				        </MudCardContent>
+                            
+				        <MudCardActions>
+                            <MudSpacer />
+					
+					        <MudButton 
+
+                                Disabled="@loading"  
+                                ButtonType="ButtonType.Submit" 
+                                Variant="Variant.Filled" Color="Color.Success" 
+                                EndIcon="@Icons.Material.Filled.Login">
+                                @if (loading)
+                                {
+                                    <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                                    <MudText Class="ms-2">Login</MudText>
+                                }
+                                else {
+                                    <MudText>Login</MudText>
+                                }
+                            </MudButton>
+				        </MudCardActions>
+			        </MudCard>
+            </EditForm>
+            </MudItem>
+  
+        </MudGrid>
+       
+
+

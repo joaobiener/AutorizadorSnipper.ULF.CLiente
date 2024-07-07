@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Principais\DataGridAutorizacao.razor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Principais\DataGridAutorizacao.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Pages\Principais\DataGridAutorizacao.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Components\NavApp.razor.cs" />
   </ItemGroup>
 

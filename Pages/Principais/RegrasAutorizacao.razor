@@ -1,0 +1,117 @@
+﻿@page "/regras"
+@using AutorizadorSnipper.ULF.Cliente.Extensions;
+@using Autorizador.ULF.Services.Shared.DataTransferObjects
+<MudCollapse Expanded="_expanded">
+	<MudCard Elevation="25">
+		<MudCardHeader>
+			<CardHeaderContent>
+				<MudText Typo="Typo.h6">Add / Edit Motor Regras</MudText>
+			</CardHeaderContent>
+		</MudCardHeader>
+		<MudCardContent>
+			<MudTextField @bind-Value="regra.IdRegra" Label="Id Regra" Variant="Variant.Text" Margin="Margin.Normal" Disabled></MudTextField>
+			<MudTextField @bind-Value="regra.NomeRegra" Label="Nome Regra" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+			<MudTextField @bind-Value="regra.DescricaoRegra" Label="Descricao Regra" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+			<MudSelect @bind-Value="regra.CodTipoGuia" Label="Tipo Guia" HelperText="Tipo Guia" OpenIcon="@Icons.Material.Filled.LocalDrink" AdornmentColor="Color.Secondary">
+				@foreach (TipoGuiaEnum tipo in Enum.GetValues(typeof(TipoGuiaEnum)))
+				{
+					<MudSelectItem Value="@tipo">@tipo.GetDescription()</MudSelectItem>
+				}
+			</MudSelect>
+			<MudSelect @bind-Value="regra.StatusGuia" Label="A ação será" Variant="Variant.Outlined">
+				<MudSelectItem Value="@("Em Análise")" />
+			</MudSelect>
+			<MudDateRangePicker @bind-DateRange="@_dateRange" Margin="Margin.Dense" ReadOnly="@(false)" Clearable="true"
+								PlaceholderStart="Início Vigência" PlaceholderEnd="Fim Vigência" />
+			<MudSelect @bind-Value="regra.CodTipoPrestador" Label="Tipo Prestador" HelperText="Tipo Prestador" OpenIcon="@Icons.Material.Filled.Person" AdornmentColor="Color.Secondary">
+				@foreach (MotorRegrasTipoPrestadorDto tipo in tiposPrestadores)
+				{
+					<MudSelectItem Value="@tipo.CodigosTipoPrestador">@tipo.NomeTipoPrestador</MudSelectItem>
+				}
+			</MudSelect>
+			<MudTextField @bind-Value="regra.CodPrestadorExec" Label="Cod Prestador Exec" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+			<MudTextField @bind-Value="regra.CodPrestadorSolic" Label="Cod Prestador Solic" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+			<MudTextField @bind-Value="regra.CodProcedimento" Label="Cod Procedimento" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+			<MudTextField @bind-Value="regra.NomeAcao" Label="Nome Acao" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+
+			<MudSwitch @bind-Value="IsAtivo" Color="Color.Primary">Estado: @(IsAtivo ? "Ativo" : "Inativo")</MudSwitch>
+			<MudSelect @bind-Value="regra.NomeAcao" Label="A ação será" Variant="Variant.Outlined">
+				<MudSelectItem Value="@("Aprovar")" />
+			</MudSelect>
+
+			<br />
+			<MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="Save">Save Motor Regra</MudButton>
+		</MudCardContent>
+	</MudCard>
+	<br />
+</MudCollapse>
+
+<MudTable T="MotorRegrasAutorizadorDto"
+		  FixedHeader="true"
+		  RowClassFunc="@SelectedRowClassFunc"
+		  OnRowClick="RowClickEvent"
+		  @bind-SelectedItems="selectedItems"
+		  Dense="true"
+		  Hover="true"
+		  Bordered="true"
+		  Striped="true"
+		 
+		  Breakpoint="Breakpoint.Xs"
+          ServerData="@(new Func<TableState, Task<TableData<MotorRegrasAutorizadorDto>>>(ServerReload))"
+		  RowClass="cursor-pointer"
+			  CustomHeader="true" CustomFooter="true" HeaderClass="table-head-bordered" FooterClass="table-foot-bordered"
+		  @ref="mudTable" Elevation="0">
+
+		<ToolBarContent>
+
+		    <MudToolBar>
+
+			        <MudTooltip Text="Nova Solicitação">
+				        <MudIconButton Disabled="@(!StatusParaInclusao())" Icon="@Icons.Material.Outlined.Add" OnClick="OpenFormCreate" Color="Color.Success" />
+			        </MudTooltip>
+			        <MudTooltip Text="Editar Solicitação">
+				        <MudIconButton Disabled="@(!StatusParaEdicao())" OnClick="OpenFormEdit" Icon="@Icons.Material.Outlined.Edit" Color="Color.Warning" />
+			        </MudTooltip>
+			        <MudTooltip Text="Remover Solicitação">
+				        <MudIconButton Disabled="@(!StatusParaEdicao())" Icon="@Icons.Material.Outlined.Remove" OnClick="Delete" Color="Color.Error" />
+			        </MudTooltip>
+			        <MudSpacer />
+			        <MudSpacer />
+		        </MudToolBar>
+		        <MudSpacer />
+
+                <MudTextField FullWidth="false" Style="width:450px" OnAdornmentClick="OnSearch" @bind-Value="searcRegra" T=" string" Immediate=false Placeholder="Por Carteirinha,Protocolo ou Codigo Prestador" Adornment="Adornment.End"
+							        AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Large" Class="mt-0" />
+
+                <MudSwitch @bind-Value="IsActiveSearch" Color="Color.Info">Estado: @(IsActiveSearch ? "Ativo" : "Inativo")</MudSwitch>
+           
+
+		</ToolBarContent>
+		<HeaderContent>
+			
+			<MudTHeadRow Class="header-centered">
+				<MudTh colspan="5">Prestador</MudTh>
+				<MudTh colspan="2">Beneficiário</MudTh>
+				<MudTh colspan="5"></MudTh>
+			</MudTHeadRow>
+			<MudTHeadRow IsCheckable=true >
+				<MudTh></MudTh>
+				<MudTh>
+					<MudTableSortLabel SortLabel="IdAutorizacaoPreAprov" T="MotorRegrasAutorizadorDto">Id</MudTableSortLabel>
+				</MudTh>
+				<MudTh>
+					<MudTableSortLabel SortLabel="NomeRegra" T="MotorRegrasAutorizadorDto">Nome da Regra</MudTableSortLabel>
+				</MudTh>
+				<MudTh>
+					<MudTableSortLabel SortLabel="DescricaoRegra " T="MotorRegrasAutorizadorDto">Descrição da Regra</MudTableSortLabel>
+				</MudTh>
+			</MudTHeadRow>
+		</HeaderContent>
+		<RowTemplate>
+
+			<MudTd DataLabel="Id">@context.IdRegra</MudTd>
+			<MudTd DataLabel="Nome Regra">@context.NomeRegra</MudTd>
+			<MudTd DataLabel="Descrição da Regra">@context.DescricaoRegra</MudTd>
+		</RowTemplate>
+
+</MudTable>

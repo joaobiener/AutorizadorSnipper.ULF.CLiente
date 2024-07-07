@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
+using System.Reflection;
 using System.Web;
 
 namespace AutorizadorSnipper.ULF.Cliente.Extensions;
@@ -30,4 +31,6 @@ public static class Extensions
 	{
 		return (T)Enum.Parse(typeof(T), value, true);
 	}
+
+   
 }

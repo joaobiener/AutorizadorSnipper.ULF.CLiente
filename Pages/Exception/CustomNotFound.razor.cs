@@ -9,7 +9,7 @@ namespace AutorizadorSnipper.ULF.Cliente.Pages.Exception
 
 		public void NavigateToHome()
 		{
-			navigationManager.NavigateTo("index");
+			navigationManager.NavigateTo("/");
 		}
 	}
 }
