@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "AutorizadorSnipper.ULF.Cliente",
   "resources": {
-    "hash": "sha256-cZLHmgAHJTrySVUvvG0kZvWjk/z+XGIGGvSiG/OsLxA=",
+    "hash": "sha256-mLo9x11dbdsbIIpn1cR4k1cKYwR70Gkk8G7F7ng6d/k=",
     "jsModuleNative": {
       "dotnet.native.8.0.6.82suddq1wh.js": "sha256-YU6M9+jtDVnB8/wtrgIndOstzNh778Ls8g9XnbjorSk="
     },
@@ -236,12 +236,12 @@
       "System.Private.CoreLib.wasm": "sha256-tuIWpR30u0OoEVtv4pXZ47mEpI2AmFBIyYFPnqDZZfw=",
       "Autorizador.ULF.Services.Shared.wasm": "sha256-shTEbVKCjRXMxVlCWmPNdCgddS92WA0detuqaQdjg2A=",
       "Entities.wasm": "sha256-Oar2klZ0ZIyzM55E6Opc9A+++FpEpRGU0cM+Qbm/u98=",
-      "AutorizadorSnipper.ULF.Cliente.wasm": "sha256-pVGCLSqoitNrf99uESYhxHWUdncqLqttFMD/nDWOZEA="
+      "AutorizadorSnipper.ULF.Cliente.wasm": "sha256-Rz2654sS9PidskEs6jQaEYysepTDCTjzULqXIcKpAIw="
     },
     "pdb": {
       "Autorizador.ULF.Services.Shared.pdb": "sha256-tIocZ85yXsiPDk3fvM7fOu1Jk7HzK0p/zkAvYLd6BPo=",
       "Entities.pdb": "sha256-rox5tIdRDpPXW8KMg3E+cPoewRP9AlEFl04gfL0YBuI=",
-      "AutorizadorSnipper.ULF.Cliente.pdb": "sha256-eAbSdtjV3y6Wvu2d0XCwAGuId85sNHiiMCGMEjK2p9o="
+      "AutorizadorSnipper.ULF.Cliente.pdb": "sha256-hd/vA6JnNPq5Mp2UqZTEoFAVxr24igems/J+doPYWwQ="
     }
   },
   "cacheBootResources": true,

@@ -24,8 +24,8 @@ namespace AutorizadorSnipper.ULF.Cliente.Pages.Principais
         string state = "Message box ainda nao foi chamada";
        
 
-        private DateRange _dateRange { get; set; }
-        private TipoGuiaEnum enumTipoValue { get; set; } = TipoGuiaEnum.C;
+        public DateRange _dateRange { get; set; }
+        public TipoGuiaEnum enumTipoValue { get; set; } = TipoGuiaEnum.C;
         public enum TipoGuiaEnum
         {
             [Description("Faturamento Guia de Consulta")]
@@ -71,12 +71,12 @@ namespace AutorizadorSnipper.ULF.Cliente.Pages.Principais
 		public HttpInterceptorService? Interceptor { get; set; }
 		public List<MotorRegrasTipoPrestadorDto> tiposPrestadores { get; set; }
 
-		private MotorRegrasAutorizadorDto regra = new MotorRegrasAutorizadorDto();
+		public MotorRegrasAutorizadorDto regra = new MotorRegrasAutorizadorDto();
         public List<MotorRegrasAutorizadorDto> Regras { get; set; } = new List<MotorRegrasAutorizadorDto>();
 		public bool bnOnSearchChangePage = false;
 		MudMessageBox mboxApagar { get; set; }
 
-		bool _expanded = true;
+		bool _expanded = false;
 
 	
 		private HashSet<MotorRegrasAutorizadorDto> selectedItems = new HashSet<MotorRegrasAutorizadorDto>();
@@ -139,7 +139,7 @@ namespace AutorizadorSnipper.ULF.Cliente.Pages.Principais
 
 
 				UserId = data[0];
-				GetTipoPrestador();
+				await GetTipoPrestador();
                 //UserId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             }
 			else

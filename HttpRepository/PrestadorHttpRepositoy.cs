@@ -68,7 +68,7 @@ namespace AutorizadorSnipper.ULF.Cliente.HttpRepository
 
 
             var response =
-                    await _client.GetAsync(QueryHelpers.AddQueryString("TipoPrestador", queryStringParam));
+                    await _client.GetAsync(QueryHelpers.AddQueryString("MotorRegras/TipoPrestador", queryStringParam));
 
             var content = await response.Content.ReadAsStringAsync();
 

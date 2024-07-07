@@ -23,7 +23,7 @@
 			</MudSelect>
 			<MudDateRangePicker @bind-DateRange="@_dateRange" Margin="Margin.Dense" ReadOnly="@(false)" Clearable="true"
 								PlaceholderStart="Início Vigência" PlaceholderEnd="Fim Vigência" />
-			<MudSelect @bind-Value="regra.CodTipoPrestador" Label="Tipo Prestador" HelperText="Tipo Prestador" OpenIcon="@Icons.Material.Filled.Person" AdornmentColor="Color.Secondary">
+			<MudSelect @bind-Value="regra.CodTipoPrestador" Label="Tipo Prestador" HelperText="Tipo Prestador" Variant="Variant.Outlined" OpenIcon="@Icons.Material.Filled.Person" AdornmentColor="Color.Secondary">
 				@foreach (MotorRegrasTipoPrestadorDto tipo in tiposPrestadores)
 				{
 					<MudSelectItem Value="@tipo.CodigosTipoPrestador">@tipo.NomeTipoPrestador</MudSelectItem>
