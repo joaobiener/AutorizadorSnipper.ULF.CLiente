@@ -15,18 +15,18 @@
 			<MudSelect @bind-Value="regra.CodTipoGuia" Label="Tipo Guia" HelperText="Tipo Guia" OpenIcon="@Icons.Material.Filled.LocalDrink" AdornmentColor="Color.Secondary">
 				@foreach (TipoGuiaEnum tipo in Enum.GetValues(typeof(TipoGuiaEnum)))
 				{
-					<MudSelectItem Value="@tipo">@tipo.GetDescription()</MudSelectItem>
+					<MudSelectItem Value="@tipo.ToString()">@tipo.GetDescription()</MudSelectItem>
 				}
 			</MudSelect>
-			<MudSelect @bind-Value="regra.StatusGuia" Label="A ação será" Variant="Variant.Outlined">
-				<MudSelectItem Value="@("Em Análise")" />
+			<MudSelect @bind-Value="regra.StatusGuia" Label="Status Guia" Variant="Variant.Outlined">
+				<MudSelectItem Value="@("EA")">Em Análise</MudSelectItem>
 			</MudSelect>
 			<MudDateRangePicker @bind-DateRange="@_dateRange" Margin="Margin.Dense" ReadOnly="@(false)" Clearable="true"
 								PlaceholderStart="Início Vigência" PlaceholderEnd="Fim Vigência" />
 			<MudSelect @bind-Value="regra.CodTipoPrestador" Label="Tipo Prestador" HelperText="Tipo Prestador" Variant="Variant.Outlined" OpenIcon="@Icons.Material.Filled.Person" AdornmentColor="Color.Secondary">
 				@foreach (MotorRegrasTipoPrestadorDto tipo in tiposPrestadores)
 				{
-					<MudSelectItem Value="@tipo.CodigosTipoPrestador">@tipo.NomeTipoPrestador</MudSelectItem>
+					<MudSelectItem Value="@tipo.Id">@tipo.NomeTipoPrestador</MudSelectItem>
 				}
 			</MudSelect>
 			<MudTextField @bind-Value="regra.CodPrestadorExec" Label="Cod Prestador Exec" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
