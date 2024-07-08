@@ -99,7 +99,12 @@ namespace AutorizadorSnipper.ULF.Cliente.Pages.Principais
             get => regra.Ativo == "S";
             set => regra.Ativo = value ? "S" : "N";
         }
-        private string _statusSearch { get; set; } = "S";
+		public bool IsBeneLocal
+		{
+			get => regra.BenefLocal == "S";
+			set => regra.BenefLocal = value ? "S" : "N";
+		}
+		private string _statusSearch { get; set; } = "S";
         public bool IsActiveSearch
         {
             get => _statusSearch == "S";
@@ -154,7 +159,12 @@ namespace AutorizadorSnipper.ULF.Cliente.Pages.Principais
 		}
         private bool StatusParaInclusao()
         {
-            return true;
+			regra = new MotorRegrasAutorizadorDto()
+			{
+				StatusGuia = "EA",
+				CodTipoGuia = TipoGuiaEnum.C.ToString()
+			};
+			return true;
         }
 
         private async Task GetTipoPrestador() {
@@ -280,7 +290,7 @@ namespace AutorizadorSnipper.ULF.Cliente.Pages.Principais
 				mudTable.ReloadServerData();
 
 			}
-			regra = new MotorRegrasAutorizadorDto();
+			
 			Expandir(false);
 		}
 

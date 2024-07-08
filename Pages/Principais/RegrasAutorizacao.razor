@@ -9,20 +9,63 @@
 			</CardHeaderContent>
 		</MudCardHeader>
 		<MudCardContent>
-			<MudTextField @bind-Value="regra.IdRegra" Label="Id Regra" Variant="Variant.Text" Margin="Margin.Normal" Disabled></MudTextField>
-			<MudTextField @bind-Value="regra.NomeRegra" Label="Nome Regra" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
-			<MudTextField @bind-Value="regra.DescricaoRegra" Label="Descricao Regra" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
-			<MudSelect @bind-Value="regra.CodTipoGuia" Label="Tipo Guia" HelperText="Tipo Guia" OpenIcon="@Icons.Material.Filled.LocalDrink" AdornmentColor="Color.Secondary">
-				@foreach (TipoGuiaEnum tipo in Enum.GetValues(typeof(TipoGuiaEnum)))
-				{
-					<MudSelectItem Value="@tipo.ToString()">@tipo.GetDescription()</MudSelectItem>
-				}
-			</MudSelect>
-			<MudSelect @bind-Value="regra.StatusGuia" Label="Status Guia" Variant="Variant.Outlined">
-				<MudSelectItem Value="@("EA")">Em Análise</MudSelectItem>
-			</MudSelect>
-			<MudDateRangePicker @bind-DateRange="@_dateRange" Margin="Margin.Dense" ReadOnly="@(false)" Clearable="true"
-								PlaceholderStart="Início Vigência" PlaceholderEnd="Fim Vigência" />
+			<MudGrid>
+				
+				<MudItem xs="1">
+					<MudPaper Class="d-flex align-center justify-center mud-width-full px-2">
+						<MudTextField @bind-Value="regra.IdRegra" Label="Id Regra" Variant="Variant.Text" Margin="Margin.Normal" Disabled></MudTextField>
+					</MudPaper>
+				</MudItem>
+				<MudItem xs="9">
+					<MudPaper Class="d-flex align-center justify-center mud-width-full px-2">
+						<MudTextField @bind-Value="regra.NomeRegra" Label="Nome Regra" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+					</MudPaper>
+				</MudItem>
+				<MudItem xs="2">
+					<MudPaper Class="d-flex align-center justify-center mud-width-full py-4 px-2">
+						<MudSwitch @bind-Value="IsAtivo" Color="Color.Primary">Estado: @(IsAtivo ? "Ativo" : "Inativo")</MudSwitch>
+
+					</MudPaper>
+				</MudItem>
+				<MudItem xs="12">
+					<MudPaper Class="d-flex align-center justify-center mud-width-full px-2">
+						<MudTextField @bind-Value="regra.DescricaoRegra" Label="Descricao Regra" Lines="4" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+					</MudPaper>
+				</MudItem>
+				<MudItem xs="8">
+					<MudPaper Class="d-flex align-center justify-center mud-width-full px-2">
+						<MudSelect @bind-Value="regra.CodTipoGuia" Label="Tipo Guia" OpenIcon="@Icons.Material.Filled.Article" AdornmentColor="Color.Info">
+							@foreach (TipoGuiaEnum tipo in Enum.GetValues(typeof(TipoGuiaEnum)))
+							{
+								<MudSelectItem Value="@tipo.ToString()">@tipo.GetDescription()</MudSelectItem>
+							}
+						</MudSelect>
+					</MudPaper>
+				</MudItem>
+				<MudItem xs="4">
+					<MudPaper Class="d-flex align-center justify-center mud-width-full px-2">
+						<MudSelect @bind-Value="regra.StatusGuia"  Label="Status Guia" Variant="Variant.Outlined">
+							<MudSelectItem Value="@("EA")">Em Análise</MudSelectItem>
+						</MudSelect>
+					</MudPaper>
+				</MudItem>
+				<MudItem xs="8">
+					<MudPaper Class="d-flex align-center justify-center mud-width-full px-2">
+						
+							<MudDateRangePicker @bind-DateRange="@_dateRange" Margin="Margin.Dense" ReadOnly="@(false)" Clearable="true"
+												PlaceholderStart="Início Vigência" PlaceholderEnd="Fim Vigência" />
+					</MudPaper>
+				</MudItem>
+				<MudItem xs="4">
+					<MudPaper Class="d-flex align-center justify-center mud-width-full px-2">
+						<MudSwitch @bind-Value="IsBeneLocal" Color="Color.Primary">Beneficiário: @(IsBeneLocal ? "Local" : "Trânsito")</MudSwitch>
+
+					</MudPaper>
+				</MudItem>
+			</MudGrid>
+			
+			
+			
 			<MudSelect @bind-Value="regra.CodTipoPrestador" Label="Tipo Prestador" HelperText="Tipo Prestador" Variant="Variant.Outlined" OpenIcon="@Icons.Material.Filled.Person" AdornmentColor="Color.Secondary">
 				@foreach (MotorRegrasTipoPrestadorDto tipo in tiposPrestadores)
 				{
@@ -34,7 +77,6 @@
 			<MudTextField @bind-Value="regra.CodProcedimento" Label="Cod Procedimento" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
 			<MudTextField @bind-Value="regra.NomeAcao" Label="Nome Acao" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
 
-			<MudSwitch @bind-Value="IsAtivo" Color="Color.Primary">Estado: @(IsAtivo ? "Ativo" : "Inativo")</MudSwitch>
 			<MudSelect @bind-Value="regra.NomeAcao" Label="A ação será" Variant="Variant.Outlined">
 				<MudSelectItem Value="@("Aprovar")" />
 			</MudSelect>
